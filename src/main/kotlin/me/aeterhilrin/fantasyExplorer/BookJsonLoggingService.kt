@@ -1,6 +1,7 @@
 package me.aeterhilrin.fantasyExplorer
 
 import com.google.gson.GsonBuilder
+import me.aeterhilrin.fantasyExplorer.PinyinUtils.cleanAndToPinyin
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import java.text.SimpleDateFormat
@@ -29,18 +30,20 @@ class BookJsonLoggingService(private val plugin: JavaPlugin) {
             val existingData = readExistingBookData(bookFile)
 
             // 检查是否已存在相同书名的书本（包含颜色代码比较）
-            if (existingData.containsKey(bookData.title)) {
-                plugin.logger.info("检测到重复书本，跳过写入: ${bookData.title}")
+            //临时修改，确保书本内容写入的时候保存的一级节点是特么的无颜色代码和无中文，受不了了！
+            //也就是加了.cleanAndToPinYin
+            if (existingData.containsKey(bookData.title.cleanAndToPinyin())) {
+                plugin.logger.info("检测到重复书本，跳过写入: ${bookData.title.cleanAndToPinyin()}")
                 return false
             }
 
             // 添加新书本数据
-            existingData[bookData.title] = createBookJsonObject(bookData)
+            existingData[bookData.title.cleanAndToPinyin()] = createBookJsonObject(bookData)
 
             // 写回文件
             writeBookDataToFile(bookFile, existingData)
 
-            plugin.logger.info("书本数据已保存到 book.json: ${bookData.title}")
+            plugin.logger.info("书本数据已保存到 book.json: ${bookData.title.cleanAndToPinyin()}")
             true
         } catch (e: Exception) {
             plugin.logger.log(Level.SEVERE, "写入book.json失败", e)
