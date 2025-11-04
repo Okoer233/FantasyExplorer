@@ -104,7 +104,9 @@ object NMSOperator {
             val internalId = if (isBook(bukkitItem)) {
                 // 对于书本，使用BookParser获取内部ID
                 val bookData = BookParser.parseBook(bukkitItem, "VillagerTradeParser")
-                bookData?.title ?: itemType
+                //临时加了.cleanAndToPinYin,原因是物品库不支持英文和颜色字符，所以保证统一我还是在写入的时候都调用了.cleanAndToPinYin
+                //至于其他的，就暂时不管了
+                bookData?.title?.cleanAndToPinyin() ?: itemType
             } else {
                 // 对于普通物品，使用ItemNbtParser获取内部ID
                 val itemData = ItemNbtParser.parseItemToItemData(bukkitItem, "VillagerTradeParser")
