@@ -1,0 +1,47 @@
+name: FantasyExplorer
+version: '1.0-SNAPSHOT'
+main: me.aeterhilrin.fantasyExplorer.FantasyExplorer
+api-version: '1.8'
+commands:
+  itemsnbtcheck:  # 这是玩家实际输入的命令，如 /itemnsbtcheck
+    description: 检查手持物品的NBT数据
+    usage: /<command>
+    aliases: [nbtcheck, checknbt]  # 命令别名
+    permission: itemsnbtcheck.command.use  # 权限节点
+    permission-message: "§c你没有权限使用此命令"
+  spawnercommandhandle: # 刷怪笼指令处理命令
+    description: 检查命令方块中的刷怪笼生成指令
+    usage: /<command>
+    aliases: [ sch, esch ]  # 命令别名
+    permission: spawnercommandhandle.command.use  # 权限节点
+    permission-message: "§c你没有权限使用此命令"
+  enhanceditemsnbtcheck: # 物品nbt解析指令处理命令
+      description: 更nb的检查
+      usage: /<command>
+      aliases: [ enbtcheck, enc ]  # 命令别名
+      permission: enhancednbtcheck.command.use  # 权限节点
+      permission-message: "§c你没有权限使用此命令"
+  bookcheck: # 物品nbt解析指令处理命令
+    description: 检查书本
+    usage: /<command>
+    aliases: [ bc, ebc ]  # 命令别名
+    permission: bookcheck.command.use  # 权限节点
+    permission-message: "§c你没有权限使用此命令"
+  villagercheck: # 村民解析指令处理命令
+    description: 检查村民
+    usage: /<command>
+    aliases: [ vc]  # 命令别名
+    permission: villagercheck.command.use  # 权限节点
+    permission-message: "§c你没有权限使用此命令"
+  loop: # 遍历指令
+    description: 检查区域
+    usage: /<command>
+    aliases: [ lp ]  # 命令别名
+    permission: loop.command.use  # 权限节点
+    permission-message: "§c你没有权限使用此命令"
+  recipegetter: # 配方处理
+    description: 生成配方
+    usage: /<command>
+    aliases: [ rg ]  # 命令别名
+    permission: recipegetter.command.use  # 权限节点
+    permission-message: "§c你没有权限使用此命令"
